@@ -32,12 +32,40 @@ const questions = [
     }
 ]
 
+function generateLogo(data) {
+    const shapeInput = data.logoShape;
+    var userShape
+
+    if (shapeInput === "Circle") {
+        userShape = new Circle();
+    } else if (shapeInput === "Triangle") {
+        userShape = new Triangle();
+    } else {
+        userShape = new Square();
+    }
+
+    userShape.setColor(data.logoShapeColor)
+
+    const logo = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    ${userShape.render()}
+    <text fill=${data.logoTextColor} font-size="45" font-family="Verdana" x="150" y="100" text-anchor="middle" alignment-baseline="middle">${data.logoText}</text>
+    </svg>`
+
+    fs.writeFile('./examples/logo.svg', logo, (err) => {
+        if (err) {
+            console.error('Error creating logo.svg: ', err);
+        
+        } else {
+            console.log('logo.svg created successfully!');
+        }
+    });
+}
+
 function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
-            console.log("Your choices: ", data);
-            console.log("Generated logo.svg")
+            generateLogo(data);
         });
 };
 
