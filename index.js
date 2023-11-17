@@ -1,12 +1,18 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const {} = require('./lib/shapes.js')
+const { Triangle, Circle, Square } = require('./lib/shapes.js')
 
 const questions = [
     {
         type: "input",
         name: "logoText",
-        message: "Enter text for your logo (Up to 3 characters)"
+        message: "Enter text for your logo (Up to 3 characters)",
+        validate: function(logoText) {
+            if (logoText.length > 3) {
+                return console.log("Text exceeds 3 characcters! Please try again.")
+            }
+            return true
+        }
     },
     {
         type: "input",
