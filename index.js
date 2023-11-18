@@ -48,7 +48,7 @@ function generateLogo(data) {
 
     const logo = `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${userShape.render()}
-    <text fill=${data.logoTextColor} font-size="45" font-family="Verdana" x="150" y="100" text-anchor="middle" alignment-baseline="middle">${data.logoText}</text>
+    <text fill="${data.logoTextColor}" font-size="45" font-family="Verdana" x="150" y="100" text-anchor="middle" alignment-baseline="middle">${data.logoText}</text>
     </svg>`
 
     fs.writeFile('./examples/logo.svg', logo, (err) => {
